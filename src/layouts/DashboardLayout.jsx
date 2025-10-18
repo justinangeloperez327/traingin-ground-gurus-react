@@ -1,0 +1,22 @@
+import React from "react";
+
+import { Outlet } from "react-router";
+import Navbar from "../components/Navbar";
+import { useAuth } from "../context/AuthContext";
+
+const DashboardLayout = () => {
+  const navLinks = [
+    { label: "Dashboard", link: "/Dashboard" },
+    { label: "Profile", link: "/profile" },
+  ];
+  return (
+    <>
+      <Navbar navLinks={navLinks} />
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
+};
+
+export default DashboardLayout;
