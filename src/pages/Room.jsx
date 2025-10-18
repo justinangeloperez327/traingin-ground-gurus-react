@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { hotels } from "../data/hotels";
 import { useParams } from "react-router";
 

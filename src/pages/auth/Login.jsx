@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
-  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -18,7 +16,6 @@ const Login = () => {
     };
 
     login(user);
-    navigate("/dashboard");
   }
 
   return (

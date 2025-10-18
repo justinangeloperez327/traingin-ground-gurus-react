@@ -1,8 +1,5 @@
-import React from "react";
-
 import { Outlet } from "react-router";
 import Navbar from "../components/Navbar";
-import { useAuth } from "../context/AuthContext";
 
 const DashboardLayout = () => {
   const navLinks = [

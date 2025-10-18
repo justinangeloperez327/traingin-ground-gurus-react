@@ -125,3 +125,7 @@ export const hotels = [
     ],
   },
 ];
+
+export const findByRoomId = (roomId) => {
+  return hotels.find((hotel) => hotel.id === roomId);
+};
