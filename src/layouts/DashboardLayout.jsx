@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 const DashboardLayout = () => {
   const navLinks = [
     { label: "Dashboard", link: "/Dashboard" },
+    { label: "Rooms", link: "/rooms" },
     { label: "Profile", link: "/profile" },
   ];
   return (

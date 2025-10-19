@@ -16,6 +16,7 @@ import PublicLayout from "./layouts/PublicLayout.jsx";
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
 import Room from "./pages/Room.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import Success from "./pages/Checkout/Success.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -34,14 +35,15 @@ createRoot(document.getElementById("root")).render(
             <Route path="/" element={<Home />} />
             <Route path="contact" element={<Contact />} />
             <Route path="about" element={<About />} />
-            <Route path="rooms" element={<Rooms />} />
-            <Route path="rooms/:roomId" element={<Room />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </Route>
           <Route element={<DashboardLayout />}>
+            <Route path="rooms" element={<Rooms />} />
+            <Route path="rooms/:roomId" element={<Room />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="checkout/success" element={<Success />} />
           </Route>
         </Routes>
       </AuthProvider>

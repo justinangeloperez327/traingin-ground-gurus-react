@@ -5,7 +5,6 @@ import { Outlet } from "react-router";
 const PublicLayout = () => {
   const navLinks = [
     { label: "Home", link: "/" },
-    { label: "Rooms", link: "/rooms" },
     { label: "Contact", link: "/contact" },
     { label: "About", link: "/about" },
   ];

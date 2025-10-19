@@ -81,11 +81,12 @@ const Navbar = ({ navLinks, authLinks }) => {
             </ul>
           </div>
         )}
-        {authLinks?.map((link, index) => (
-          <NavLink to={link.link} key={index}>
-            {link.label}
-          </NavLink>
-        ))}
+        {!user &&
+          authLinks?.map((link, index) => (
+            <NavLink to={link.link} key={index}>
+              {link.label}
+            </NavLink>
+          ))}
       </div>
     </div>
   );

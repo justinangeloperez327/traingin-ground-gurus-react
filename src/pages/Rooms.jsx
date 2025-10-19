@@ -1,19 +1,41 @@
-import { useMemo, useState } from "react";
-import { hotels } from "../data/hotels";
+import { useEffect, useState } from "react";
+
 import { NavLink } from "react-router";
 
 const Rooms = () => {
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [rooms, setRooms] = useState([]);
+  //   const { token } = useAuth();
+  const token = JSON.parse(localStorage.getItem("token"));
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
 
-  const rooms = useMemo(() => {
-    const s = search.trim().toLowerCase();
+    const url = `/api/rooms?search=${search}`;
 
-    return hotels.filter(
-      (hotel) =>
-        hotel.name.toLowerCase().includes(s) ||
-        hotel.description.toLowerCase().includes(s)
-    );
-  }, [search]);
+    (async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setRooms(data.data);
+          setLoading(false);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [search, token]);
 
   return (
     <ul className="list bg-base-100 rounded-box shadow-md">
@@ -39,9 +61,15 @@ const Rooms = () => {
           <div>
             <div>{r.name}</div>
           </div>
-          <p className="list-col-wrap text-xs">{r.description}</p>
+          <p className="list-col-wrap text-xs">{r.room_number}</p>
         </NavLink>
       ))}
+      {loading && (
+        <div className="mt-4 text-sm text-gray-600">Loading Rooms...</div>
+      )}
+      {error && (
+        <div className="mt-4 alert alert-error">{/* <div>{error}</div> */}</div>
+      )}
     </ul>
   );
 };

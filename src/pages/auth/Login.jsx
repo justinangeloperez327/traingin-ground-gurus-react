@@ -8,11 +8,10 @@ const Login = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // api return
+
     const user = {
-      id: 1,
-      name: "Justin",
       email,
+      password,
     };
 
     login(user);
