@@ -7,6 +7,7 @@ const Success = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
   const token = JSON.parse(localStorage.getItem("token"));
+  const api = import.meta.env.VITE_API_URL;
   useEffect(() => {
     if (!sessionId) {
       setStatus({ ok: false, message: "Missing session_id" });
@@ -16,9 +17,7 @@ const Success = () => {
     (async () => {
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/success?session_id=${encodeURIComponent(
-            sessionId
-          )}`,
+          `${api}/success?session_id=${encodeURIComponent(sessionId)}`,
           {
             headers: {
               "Content-Type": "application/json",

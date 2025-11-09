@@ -6,6 +6,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const api = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
@@ -16,8 +17,7 @@ export function AuthProvider({ children }) {
 
   const login = (loginData) => {
     setUser(null);
-    // api
-    fetch("/api/login", {
+    fetch(`${api}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,12 +42,25 @@ export function AuthProvider({ children }) {
 
   const register = (userData) => {
     console.log(userData);
-    // api
-    navigate("/login");
+    fetch(`${api}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .finally(() => {
+        navigate("/login");
+      });
   };
 
   const logout = () => {
-    fetch("/api/logout", {
+    fetch(`${api}/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

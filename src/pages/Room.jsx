@@ -7,10 +7,10 @@ const Room = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const token = JSON.parse(localStorage.getItem("token"));
-
+  const api = import.meta.env.VITE_API_URL;
   useEffect(() => {
     try {
-      fetch(`/api/rooms/${roomId}`, {
+      fetch(`${api}/rooms/${roomId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -32,7 +32,7 @@ const Room = () => {
   }, [roomId, token]);
 
   async function handleCheckout() {
-    const response = await fetch("http://127.0.0.1:8000/api/checkout", {
+    const response = await fetch(`${api}/checkout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -15,7 +15,7 @@ const Register = () => {
       email,
       name,
       password,
-      confirmPassword,
+      password_confirmation: confirmPassword,
     });
   };
   return (

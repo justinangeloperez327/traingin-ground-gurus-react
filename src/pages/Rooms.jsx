@@ -9,11 +9,12 @@ const Rooms = () => {
   const [rooms, setRooms] = useState([]);
   //   const { token } = useAuth();
   const token = JSON.parse(localStorage.getItem("token"));
+  const api = import.meta.env.VITE_API_URL;
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    const url = `/api/rooms?search=${search}`;
+    const url = `${api}/rooms?search=${search}`;
 
     (async () => {
       setLoading(true);
