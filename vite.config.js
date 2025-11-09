@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [tailwindcss(), react()],
   server: {
     proxy: {
-      "/api": "http://127.0.0.1:8000",
+      "/api": import.meta.env.VITE_API_URL || "http://localhost:5000",
     },
   },
 });
